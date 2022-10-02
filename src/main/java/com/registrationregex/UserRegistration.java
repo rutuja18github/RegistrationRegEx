@@ -48,7 +48,7 @@ public class UserRegistration {
 		return matcher.matches();
 	}
 	public boolean validateEmail(String email) {
-		Pattern patternObject = Pattern.compile("^[a-z]{1,3}[a-zA-Z0-9.]*@[a-z]*.[a-z]*.[a-z]*$");
+		Pattern patternObject = Pattern.compile("^[abc]{3}[a-zA-Z0-9.]*@[bl]{2}[.][co]{2}[.][a-z.]*$");
 		Matcher matcher = patternObject.matcher(email);
 		if (matcher.matches()==false) {
 			System.out.println("Invalid");
@@ -58,4 +58,5 @@ public class UserRegistration {
 		} 
 		return matcher.matches();
 	}
+	
 }
