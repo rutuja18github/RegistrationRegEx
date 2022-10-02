@@ -24,8 +24,9 @@ public class UserRegistration {
 		logger.info("Enter mobile number country code followed by space and 10 digit number");
 		String mobile = scanner.nextLine();
 		validateMobile(mobile);
-
-
+		logger.info("Enter a PassWord");
+		String password = scanner.nextLine();
+		validatePassword(password);
 	}
 
 	public boolean validateFirstName(String firstName) {
@@ -39,37 +40,52 @@ public class UserRegistration {
 		}
 		return matcher.matches();
 	}
+
 	public boolean validateLastName(String lastName) {
 		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
 		Matcher matcher = patternObject.matcher(lastName);
-		if (matcher.matches()==false) {
+		if (matcher.matches() == false) {
 			System.out.println("Invalid");
 			logger.info("Enter valid Last name");
 			String newLasttName = scanner.nextLine();
 			validateFirstName(newLasttName);
-		} 
+		}
 		return matcher.matches();
 	}
+
 	public boolean validateEmail(String email) {
 		Pattern patternObject = Pattern.compile("^[abc]{3}[a-zA-Z0-9.]*@[bl]{2}[.][co]{2}[.][a-z.]*$");
 		Matcher matcher = patternObject.matcher(email);
-		if (matcher.matches()==false) {
+		if (matcher.matches() == false) {
 			System.out.println("Invalid");
 			logger.info("Enter valid email ");
 			String newemail = scanner.nextLine();
 			validateFirstName(newemail);
-		} 
+		}
 		return matcher.matches();
 	}
+
 	public boolean validateMobile(String mobile) {
 		Pattern patternObject = Pattern.compile("^[91]{2}[ ]{1}[0-9]{10}$");
 		Matcher matcher = patternObject.matcher(mobile);
-		if (matcher.matches()==false) {
+		if (matcher.matches() == false) {
 			System.out.println("Invalid");
 			logger.info("Enter valid email ");
 			String newMobile = scanner.nextLine();
 			validateFirstName(newMobile);
-		} 
+		}
+		return matcher.matches();
+	}
+
+	public boolean validatePassword(String password) {
+		Pattern patternObject = Pattern.compile("^[a-zA-Z0-9]{8,}$");
+		Matcher matcher = patternObject.matcher(password);
+		if (matcher.matches() == false) {
+			System.out.println("Invalid");
+			logger.info("Enter valid email ");
+			String newMobile = scanner.nextLine();
+			validateFirstName(newMobile);
+		}
 		return matcher.matches();
 	}
 }
