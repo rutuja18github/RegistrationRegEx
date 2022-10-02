@@ -18,6 +18,10 @@ public class UserRegistration {
 		logger.info("Enter last name Start with Capital letter and has atleast 3 charecter");
 		String LastName = scanner.nextLine();
 		validateLastName(LastName);
+		logger.info("Enter Email ID e.g. abc.xyz@bl.co.in");
+		String email = scanner.nextLine();
+		validateEmail(email);
+
 
 	}
 
@@ -40,6 +44,17 @@ public class UserRegistration {
 			logger.info("Enter valid Last name");
 			String newLasttName = scanner.nextLine();
 			validateFirstName(newLasttName);
+		} 
+		return matcher.matches();
+	}
+	public boolean validateEmail(String email) {
+		Pattern patternObject = Pattern.compile("^[a-z]{1,3}[a-zA-Z0-9.]*@[a-z]*.[a-z]*.[a-z]*$");
+		Matcher matcher = patternObject.matcher(email);
+		if (matcher.matches()==false) {
+			System.out.println("Invalid");
+			logger.info("Enter valid email ");
+			String newemail = scanner.nextLine();
+			validateFirstName(newemail);
 		} 
 		return matcher.matches();
 	}
