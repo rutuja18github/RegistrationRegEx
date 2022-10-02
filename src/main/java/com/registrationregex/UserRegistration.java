@@ -54,7 +54,7 @@ public class UserRegistration {
 	}
 
 	public boolean validateEmail(String email) {
-		Pattern patternObject = Pattern.compile("^[abc]{3}[a-zA-Z0-9.]*@[bl]{2}[.][co]{2}[.][a-z.]*$");
+		Pattern patternObject = Pattern.compile("^[A-Za-z0-9+.-]*@[a-z0-9.]*$");
 		Matcher matcher = patternObject.matcher(email);
 		if (matcher.matches() == false) {
 			System.out.println("Invalid");
