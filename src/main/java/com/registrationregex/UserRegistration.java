@@ -57,6 +57,18 @@ public class UserRegistration {
 				break;
 			}
 		}
+		logger.info("Enter a PassWord");
+		String password = scanner.nextLine();
+		boolean passwordResult=validatePassword(password);
+		while (passwordResult == false) {
+			logger.info("Enter valid password");
+			String newPassWord = scanner.nextLine();
+			boolean value = validatePassword(newPassWord);
+			if (value) {
+				break;
+			}
+		}
+
 	}
 
 	public boolean validateFirstName(String firstName) {
@@ -91,6 +103,15 @@ public class UserRegistration {
 	public boolean validateMobile(String mobile) {
 		Pattern patternObject = Pattern.compile("^[91]{2}[ ]{1}[0-9]{10}$");
 		Matcher matcher = patternObject.matcher(mobile);
+		if (matcher.matches()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean validatePassword(String password) {
+		Pattern patternObject = Pattern.compile("^[a-zA-Z0-9]{8,}$");
+		Matcher matcher = patternObject.matcher(password);
 		if (matcher.matches()) {
 			return true;
 		} else {
