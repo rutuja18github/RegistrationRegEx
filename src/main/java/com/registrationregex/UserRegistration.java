@@ -14,33 +14,47 @@ public class UserRegistration {
 	public void fillForm() {
 		logger.info("Enter first name Start with Capital letter and has atleast 3 charecter");
 		String firstName = scanner.nextLine();
-		validateFirstName(firstName);
+		boolean firstNameResult = validateFirstName(firstName);
+		while (firstNameResult == false) {
+			logger.info("Enter valid First name");
+			String newFirstName = scanner.nextLine();
+			boolean value = validateFirstName(newFirstName);
+			if (value) {
+				break;
+			}
+		}
 		logger.info("Enter last name Start with Capital letter and has atleast 3 charecter");
 		String LastName = scanner.nextLine();
-		validateLastName(LastName);
-
+		boolean lastNameResult = validateLastName(LastName);
+		while (lastNameResult == false) {
+			logger.info("Enter valid Last name");
+			String newLasttName = scanner.nextLine();
+			boolean result = validateLastName(newLasttName);
+			;
+			if (result) {
+				break;
+			}
+		}
 	}
 
 	public boolean validateFirstName(String firstName) {
 		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
 		Matcher matcher = patternObject.matcher(firstName);
-		if (matcher.matches() == false) {
-			System.out.println("Invalid");
-			logger.info("Enter valid First name");
-			String newFirstName = scanner.nextLine();
-			validateFirstName(newFirstName);
+		if (matcher.matches()) {
+			return true;
+		} else {
+			return false;
 		}
-		return matcher.matches();
 	}
+
 	public boolean validateLastName(String lastName) {
 		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
 		Matcher matcher = patternObject.matcher(lastName);
-		if (matcher.matches()==false) {
-			System.out.println("Invalid");
-			logger.info("Enter valid Last name");
-			String newLasttName = scanner.nextLine();
-			validateFirstName(newLasttName);
-		} 
-		return matcher.matches();
+		if (matcher.matches()) {
+			return true;
+		} else {
+			return false;
+		}
 	}
+
 }
