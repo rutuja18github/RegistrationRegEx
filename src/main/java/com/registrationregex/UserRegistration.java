@@ -14,19 +14,25 @@ public class UserRegistration {
 	public void fillForm() {
 		logger.info("Enter first name Start with Capital letter and has atleast 3 charecter");
 		String firstName = scanner.nextLine();
-		validateFirstName(firstName);
-
+		boolean firstNameResult = validateFirstName(firstName);
+		while (firstNameResult == false) {
+			logger.info("Enter valid First name");
+			String newFirstName = scanner.nextLine();
+			boolean value = validateFirstName(newFirstName);
+			if (value) {
+				break;
+			}
+		}
 	}
 
 	public boolean validateFirstName(String firstName) {
 		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
 		Matcher matcher = patternObject.matcher(firstName);
-		if (matcher.matches() == false) {
-			System.out.println("Invalid");
-			logger.info("Enter valid First name");
-			String newFirstName = scanner.nextLine();
-			validateFirstName(newFirstName);
+		if (matcher.matches()) {
+			return true;
+		} else {
+			return false;
 		}
-		return matcher.matches();
 	}
+
 }
