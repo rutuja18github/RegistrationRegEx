@@ -10,7 +10,7 @@ import org.apache.logging.log4j.Logger;
 public class UserRegistration {
 	private static final Logger logger = LogManager.getLogger(App.class);
 	Scanner scanner = new Scanner(System.in);
-
+    //take input from user
 	public void fillForm() {
 		logger.info("Enter first name Start with Capital letter and has atleast 3 charecter");
 		String firstName = scanner.nextLine();
@@ -57,9 +57,21 @@ public class UserRegistration {
 				break;
 			}
 		}
-		
+		logger.info("Enter a PassWord");
+		String password = scanner.nextLine();
+		boolean passwordResult=validatePassword(password);
+		while (passwordResult == false) {
+			logger.info("Enter valid password");
+			String newPassWord = scanner.nextLine();
+			boolean value = validatePassword(newPassWord);
+			if (value) {
+				break;
+			}
+		}
+
 	}
 
+	//validate First name
 	public boolean validateFirstName(String firstName) {
 		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
 		Matcher matcher = patternObject.matcher(firstName);
@@ -69,7 +81,8 @@ public class UserRegistration {
 			return false;
 		}
 	}
-
+	
+	//validate Last name
 	public boolean validateLastName(String lastName) {
 		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
 		Matcher matcher = patternObject.matcher(lastName);
@@ -80,6 +93,7 @@ public class UserRegistration {
 		}
 	}
 
+	//validate email
 	public boolean validateEmail(String email) {
 		Pattern patternObject = Pattern.compile("^[A-Za-z0-9+.-]*@[a-z0-9.]*$");
 		Matcher matcher = patternObject.matcher(email);
@@ -89,9 +103,22 @@ public class UserRegistration {
 			return false;
 		}
 	}
+	
+	//validate mobile number
 	public boolean validateMobile(String mobile) {
 		Pattern patternObject = Pattern.compile("^[91]{2}[ ]{1}[0-9]{10}$");
 		Matcher matcher = patternObject.matcher(mobile);
+		if (matcher.matches()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	//validate password
+	public boolean validatePassword(String password) {
+		Pattern patternObject = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$");
+		Matcher matcher = patternObject.matcher(password);
 		if (matcher.matches()) {
 			return true;
 		} else {
