@@ -46,6 +46,17 @@ public class UserRegistration {
 				break;
 			}
 		}
+		logger.info("Enter mobile number country code followed by space and 10 digit number");
+		String mobile = scanner.nextLine();
+		boolean mobileResult=validateMobile(mobile);
+		while (mobileResult == false) {
+			logger.info("Enter valid mobile number ");
+			String newMobile = scanner.nextLine();
+			boolean value =validateMobile(newMobile);
+			if (value) {
+				break;
+			}
+		}
 	}
 
 	public boolean validateFirstName(String firstName) {
@@ -71,6 +82,15 @@ public class UserRegistration {
 	public boolean validateEmail(String email) {
 		Pattern patternObject = Pattern.compile("^[A-Za-z0-9+.-]*@[a-z0-9.]*$");
 		Matcher matcher = patternObject.matcher(email);
+		if (matcher.matches()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean validateMobile(String mobile) {
+		Pattern patternObject = Pattern.compile("^[91]{2}[ ]{1}[0-9]{10}$");
+		Matcher matcher = patternObject.matcher(mobile);
 		if (matcher.matches()) {
 			return true;
 		} else {
