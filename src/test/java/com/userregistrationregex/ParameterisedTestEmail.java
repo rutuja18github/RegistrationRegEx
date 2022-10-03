@@ -19,8 +19,6 @@ public class ParameterisedTestEmail {
 	  public String email;
 	  public boolean expectedOutput;
 	  public UserRegistration userRegistrationObject;
-	  private static final Logger log = LogManager.getLogger(UserRegistration.class);
-
 	  public ParameterisedTestEmail(String email, boolean expectedOutput) {
 	      super();
 	      this.email = email;
@@ -54,7 +52,6 @@ public class ParameterisedTestEmail {
 	  }
 	  @Test
 	  public void checkEmail() {
-	      log.info("Email:" + this.expectedOutput);
 	      Assert.assertEquals(this.expectedOutput, userRegistrationObject.validateEmail(this.email));
 	  }
 }
