@@ -66,7 +66,7 @@ public class UserRegistration {
 
 	// validate First name
 	public boolean validateFirstName(String firstName) throws InvalidInputException {
-		isValid = userRegistration.pattern(firstName, "^^[A-Z]{1}[a-z]{2,}$");
+		isValid = userRegistration.matchPattern(firstName, "^^[A-Z]{1}[a-z]{2,}$");
 		if (isValid) {
 			return true;
 		} else {
@@ -76,7 +76,7 @@ public class UserRegistration {
 
 	// validate Last name
 	public boolean validateLastName(String lastName) throws InvalidInputException {
-		isValid = userRegistration.pattern(lastName, "^^[A-Z]{1}[a-z]{2,}$");
+		isValid = userRegistration.matchPattern(lastName, "^^[A-Z]{1}[a-z]{2,}$");
 		if (isValid) {
 			return true;
 		} else {
@@ -86,7 +86,7 @@ public class UserRegistration {
 
 	// validate email
 	public boolean validateEmail(String email) throws InvalidInputException {
-		isValid = userRegistration.pattern(email, "^[A-Za-z0-9+.-]*@[a-z0-9.]*$");
+		isValid = userRegistration.matchPattern(email, "^[A-Za-z0-9+.-]*@[a-z0-9.]*$");
 		if (isValid) {
 			return true;
 		} else {
@@ -96,7 +96,7 @@ public class UserRegistration {
 
 	// validate mobile number
 	public boolean validateMobile(String mobile) throws InvalidInputException {
-		isValid = userRegistration.pattern(mobile, "^[91]{2}[ ]{1}[0-9]{10}$");
+		isValid = userRegistration.matchPattern(mobile, "^[91]{2}[ ]{1}[0-9]{10}$");
 		if (isValid) {
 			return true;
 		} else {
@@ -106,7 +106,7 @@ public class UserRegistration {
 
 	// validate password
 	public boolean validatePassword(String password) throws InvalidInputException {
-		isValid = userRegistration.pattern(password,"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$");
+		isValid = userRegistration.matchPattern(password,"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$");
 		if (isValid) {
 			return true;
 		} else {
