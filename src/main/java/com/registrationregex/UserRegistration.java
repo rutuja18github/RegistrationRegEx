@@ -14,115 +14,97 @@ public class UserRegistration {
 	public void fillForm() {
 		logger.info("Enter first name Start with Capital letter and has atleast 3 charecter");
 		String firstName = scanner.nextLine();
-		boolean firstNameResult = validateFirstName(firstName);
-		while (firstNameResult == false) {
-			logger.info("Enter valid First name");
-			String newFirstName = scanner.nextLine();
-			boolean value = validateFirstName(newFirstName);
-			if (value) {
-				break;
-			}
+	    try {
+			validateFirstName(firstName);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
 		}
+		
 		logger.info("Enter last name Start with Capital letter and has atleast 3 charecter");
 		String LastName = scanner.nextLine();
-		boolean lastNameResult = validateLastName(LastName);
-		while (lastNameResult == false) {
-			logger.info("Enter valid Last name");
-			String newLasttName = scanner.nextLine();
-			boolean result = validateLastName(newLasttName);
-			;
-			if (result) {
-				break;
-			}
+		try {
+			validateLastName(LastName);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
 		}
 		logger.info("Enter Email ID e.g. abc.xyz@bl.co.in");
 		String email = scanner.nextLine();
-		boolean emailResult = validateEmail(email);
-		while (emailResult == false) {
-			logger.info("Enter valid email ");
-			String newemail = scanner.nextLine();
-			boolean result = validateEmail(newemail);
-			if (result) {
-				break;
-			}
+		try {
+			validateEmail(email);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
 		}
 		logger.info("Enter mobile number country code followed by space and 10 digit number");
 		String mobile = scanner.nextLine();
-		boolean mobileResult=validateMobile(mobile);
-		while (mobileResult == false) {
-			logger.info("Enter valid mobile number ");
-			String newMobile = scanner.nextLine();
-			boolean value =validateMobile(newMobile);
-			if (value) {
-				break;
-			}
+		try {
+			validateMobile(mobile);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
 		}
+		
 		logger.info("Enter a PassWord");
 		String password = scanner.nextLine();
-		boolean passwordResult=validatePassword(password);
-		while (passwordResult == false) {
-			logger.info("Enter valid password");
-			String newPassWord = scanner.nextLine();
-			boolean value = validatePassword(newPassWord);
-			if (value) {
-				break;
-			}
+		try {
+			validatePassword(password);
+		} catch (InvalidInputException e) {
+			e.printStackTrace();
 		}
+		
 
 	}
 
 	//validate First name
-	public boolean validateFirstName(String firstName) {
+	public boolean validateFirstName(String firstName) throws InvalidInputException {
 		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
 		Matcher matcher = patternObject.matcher(firstName);
 		if (matcher.matches()) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidInputException("Invalid First Name");
 		}
 	}
 	
 	//validate Last name
-	public boolean validateLastName(String lastName) {
+	public boolean validateLastName(String lastName) throws InvalidInputException {
 		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
 		Matcher matcher = patternObject.matcher(lastName);
 		if (matcher.matches()) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidInputException("Invalid Last Name");
 		}
 	}
 
 	//validate email
-	public boolean validateEmail(String email) {
+	public boolean validateEmail(String email) throws InvalidInputException {
 		Pattern patternObject = Pattern.compile("^[A-Za-z0-9+.-]*@[a-z0-9.]*$");
 		Matcher matcher = patternObject.matcher(email);
 		if (matcher.matches()) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidInputException("Invalid Email");
 		}
 	}
 	
 	//validate mobile number
-	public boolean validateMobile(String mobile) {
+	public boolean validateMobile(String mobile) throws InvalidInputException {
 		Pattern patternObject = Pattern.compile("^[91]{2}[ ]{1}[0-9]{10}$");
 		Matcher matcher = patternObject.matcher(mobile);
 		if (matcher.matches()) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidInputException("Invalid Mobile Number");
 		}
 	}
 	
 	//validate password
-	public boolean validatePassword(String password) {
+	public boolean validatePassword(String password) throws InvalidInputException {
 		Pattern patternObject = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$");
 		Matcher matcher = patternObject.matcher(password);
 		if (matcher.matches()) {
 			return true;
 		} else {
-			return false;
+			throw new InvalidInputException("Invalid Password");
 		}
 	}
 
