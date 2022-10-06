@@ -10,16 +10,28 @@ import org.apache.logging.log4j.Logger;
 public class UserRegistration {
 	private static final Logger logger = LogManager.getLogger(App.class);
 	Scanner scanner = new Scanner(System.in);
-    //take input from user
+	boolean isValid;
+
+	UserRegistrationFunction userRegistration = (value, pattern) -> {
+		Pattern patternObject = Pattern.compile(pattern);
+		Matcher matchObject = patternObject.matcher(value);
+		if (matchObject.matches()) {
+			return true;
+		} else {
+			return false;
+		}
+	};
+
+	// take input from user
 	public void fillForm() {
 		logger.info("Enter first name Start with Capital letter and has atleast 3 charecter");
 		String firstName = scanner.nextLine();
-	    try {
+		try {
 			validateFirstName(firstName);
 		} catch (InvalidInputException e) {
 			e.printStackTrace();
 		}
-		
+
 		logger.info("Enter last name Start with Capital letter and has atleast 3 charecter");
 		String LastName = scanner.nextLine();
 		try {
@@ -41,67 +53,61 @@ public class UserRegistration {
 		} catch (InvalidInputException e) {
 			e.printStackTrace();
 		}
-		
-		logger.info("Enter a PassWord");
+
+		logger.info("Enter a Password");
 		String password = scanner.nextLine();
 		try {
 			validatePassword(password);
 		} catch (InvalidInputException e) {
 			e.printStackTrace();
 		}
-		
 
 	}
 
-	//validate First name
+	// validate First name
 	public boolean validateFirstName(String firstName) throws InvalidInputException {
-		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
-		Matcher matcher = patternObject.matcher(firstName);
-		if (matcher.matches()) {
+		isValid = userRegistration.pattern(firstName, "^^[A-Z]{1}[a-z]{2,}$");
+		if (isValid) {
 			return true;
 		} else {
 			throw new InvalidInputException("Invalid First Name");
 		}
 	}
-	
-	//validate Last name
+
+	// validate Last name
 	public boolean validateLastName(String lastName) throws InvalidInputException {
-		Pattern patternObject = Pattern.compile("^[A-Z]{1}[a-z]{2,}$");
-		Matcher matcher = patternObject.matcher(lastName);
-		if (matcher.matches()) {
+		isValid = userRegistration.pattern(lastName, "^^[A-Z]{1}[a-z]{2,}$");
+		if (isValid) {
 			return true;
 		} else {
 			throw new InvalidInputException("Invalid Last Name");
 		}
 	}
 
-	//validate email
+	// validate email
 	public boolean validateEmail(String email) throws InvalidInputException {
-		Pattern patternObject = Pattern.compile("^[A-Za-z0-9+.-]*@[a-z0-9.]*$");
-		Matcher matcher = patternObject.matcher(email);
-		if (matcher.matches()) {
+		isValid = userRegistration.pattern(email, "^[A-Za-z0-9+.-]*@[a-z0-9.]*$");
+		if (isValid) {
 			return true;
 		} else {
 			throw new InvalidInputException("Invalid Email");
 		}
 	}
-	
-	//validate mobile number
+
+	// validate mobile number
 	public boolean validateMobile(String mobile) throws InvalidInputException {
-		Pattern patternObject = Pattern.compile("^[91]{2}[ ]{1}[0-9]{10}$");
-		Matcher matcher = patternObject.matcher(mobile);
-		if (matcher.matches()) {
+		isValid = userRegistration.pattern(mobile, "^[91]{2}[ ]{1}[0-9]{10}$");
+		if (isValid) {
 			return true;
 		} else {
 			throw new InvalidInputException("Invalid Mobile Number");
 		}
 	}
-	
-	//validate password
+
+	// validate password
 	public boolean validatePassword(String password) throws InvalidInputException {
-		Pattern patternObject = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$");
-		Matcher matcher = patternObject.matcher(password);
-		if (matcher.matches()) {
+		isValid = userRegistration.pattern(password,"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,}$");
+		if (isValid) {
 			return true;
 		} else {
 			throw new InvalidInputException("Invalid Password");
